@@ -69,7 +69,7 @@
 </head>
 <body>
     <div class="login-container">
-        <img src="https://example.com/elephant.png" alt="Elephant Image">
+        <img src="https://img.freepik.com/free-vector/elephant-cartoon-character-standing-white-background_1308-154054.jpg" alt="Elephant Image">
         <h2>Login</h2>
         <form>
             <input type="text" name="username" placeholder="Username" required><br>
