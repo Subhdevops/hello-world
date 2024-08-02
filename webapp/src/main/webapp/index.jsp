@@ -19,6 +19,13 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             width: 350px;
             text-align: center;
+            position: relative;
+        }
+        .login-container img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 20px;
         }
         .login-container h2 {
             margin-bottom: 30px;
@@ -62,6 +69,7 @@
 </head>
 <body>
     <div class="login-container">
+        <img src="https://example.com/elephant.png" alt="Elephant Image">
         <h2>Login</h2>
         <form>
             <input type="text" name="username" placeholder="Username" required><br>
