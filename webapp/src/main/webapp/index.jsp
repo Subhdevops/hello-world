@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Page</title>
+    <title>Interactive Registration Page</title>
     <style>
         body {
-            background-color: red;
+            background-color: yellow;
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
@@ -42,17 +42,48 @@
         .registration-container button:hover {
             background-color: #45a049;
         }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
     </style>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            let firstName = document.forms["registrationForm"]["firstname"].value;
+            let lastName = document.forms["registrationForm"]["lastname"].value;
+            let email = document.forms["registrationForm"]["email"].value;
+            let password = document.forms["registrationForm"]["password"].value;
+            let errorMessage = "";
+
+            if (firstName === "" || lastName === "" || email === "" || password === "") {
+                errorMessage = "All fields are required.";
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                errorMessage = "Please enter a valid email address.";
+            } else if (password.length < 6) {
+                errorMessage = "Password must be at least 6 characters long.";
+            }
+
+            if (errorMessage) {
+                document.getElementById("error").innerText = errorMessage;
+            } else {
+                alert("Registration successful!");
+                document.forms["registrationForm"].reset();
+                document.getElementById("error").innerText = "";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="registration-container">
         <h2>Registration Form</h2>
-        <form>
+        <form name="registrationForm" onsubmit="validateForm(event)">
             <input type="text" name="firstname" placeholder="First Name" required>
             <input type="text" name="lastname" placeholder="Last Name" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Register</button>
+            <div id="error" class="error"></div>
         </form>
     </div>
 </body>
