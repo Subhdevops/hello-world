@@ -3,88 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Registration Page</title>
+    <title>Modern Registration Form</title>
     <style>
         body {
-            background-color: yellow;
             font-family: Arial, sans-serif;
+            background: #f2f2f2;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
-        .registration-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
         }
-        .registration-container h2 {
-            margin-top: 0;
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
         }
-        .registration-container input {
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
             width: 100%;
             padding: 10px;
-            margin: 10px 0;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 4px;
         }
-        .registration-container button {
+
+        .form-group input:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .form-group button {
             width: 100%;
             padding: 10px;
-            background-color: #4CAF50;
-            color: white;
+            background-color: #007BFF;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
             cursor: pointer;
         }
-        .registration-container button:hover {
-            background-color: #45a049;
+
+        .form-group button:hover {
+            background-color: #0056b3;
         }
-        .error {
+
+        .form-group .error {
             color: red;
-            font-size: 0.9em;
+            font-size: 14px;
+            margin-top: 5px;
         }
     </style>
-    <script>
-        function validateForm(event) {
-            event.preventDefault();
-            let firstName = document.forms["registrationForm"]["firstname"].value;
-            let lastName = document.forms["registrationForm"]["lastname"].value;
-            let email = document.forms["registrationForm"]["email"].value;
-            let password = document.forms["registrationForm"]["password"].value;
-            let errorMessage = "";
-
-            if (firstName === "" || lastName === "" || email === "" || password === "") {
-                errorMessage = "All fields are required.";
-            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                errorMessage = "Please enter a valid email address.";
-            } else if (password.length < 6) {
-                errorMessage = "Password must be at least 6 characters long.";
-            }
-
-            if (errorMessage) {
-                document.getElementById("error").innerText = errorMessage;
-            } else {
-                alert("Registration successful!");
-                document.forms["registrationForm"].reset();
-                document.getElementById("error").innerText = "";
-            }
-        }
-    </script>
 </head>
 <body>
-    <div class="registration-container">
-        <h2>Registration Form</h2>
-        <form name="registrationForm" onsubmit="validateForm(event)">
-            <input type="text" name="firstname" placeholder="First Name" required>
-            <input type="text" name="lastname" placeholder="Last Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Register</button>
-            <div id="error" class="error"></div>
+    <div class="container">
+        <h2>Register</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+                <div class="error" id="usernameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error" id="emailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <div class="error" id="passwordError"></div>
+            </div>
+            <div class="form-group">
+                <button type="submit">Register</button>
+            </div>
         </form>
     </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let valid = true;
+
+            // Clear previous errors
+            document.getElementById('usernameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+
+            // Validate username
+            const username = document.getElementById('username').value;
+            if (username.length < 3) {
+                document.getElementById('usernameError').textContent = 'Username must be at least 3 characters long';
+                valid = false;
+            }
+
+            // Validate email
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').textContent = 'Invalid email address';
+                valid = false;
+            }
+
+            // Validate password
+            const password = document.getElementById('password').value;
+            if (password.length < 6) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long';
+                valid = false;
+            }
+
+            if (valid) {
+                alert('Form submitted successfully!');
+                // Here you can add the code to send the form data to the server
+            }
+        });
+    </script>
 </body>
 </html>
