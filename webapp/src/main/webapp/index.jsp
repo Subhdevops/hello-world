@@ -3,139 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Registration Form ggg</title>
+    <title>Simple Cart</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background: #f2f2f2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            padding: 20px;
         }
 
         .container {
+            max-width: 800px;
+            margin: 0 auto;
             background: #fff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
         }
 
-        h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
+        h1 {
+            text-align: center;
         }
 
-        .form-group {
-            margin-bottom: 15px;
+        .products, .cart {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
+        .product, .cart-item {
             border: 1px solid #ccc;
             border-radius: 4px;
-        }
-
-        .form-group input:focus {
-            border-color: #007BFF;
-            outline: none;
-        }
-
-        .form-group button {
-            width: 100%;
             padding: 10px;
+            margin: 10px;
+            width: calc(33.333% - 20px);
+            box-sizing: border-box;
+            background: #fff;
+        }
+
+        .product button, .cart-item button {
             background-color: #007BFF;
-            border: none;
-            border-radius: 4px;
             color: #fff;
-            font-size: 16px;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
             cursor: pointer;
         }
 
-        .form-group button:hover {
+        .product button:hover, .cart-item button:hover {
             background-color: #0056b3;
         }
 
-        .form-group .error {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
+        .cart-summary {
+            margin-top: 20px;
+            text-align: right;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Register</h2>
-        <form id="registrationForm">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-                <div class="error" id="usernameError"></div>
+        <h1>Shopping Cart</h1>
+        <h2>Products</h2>
+        <div class="products" id="products">
+            <div class="product">
+                <h3>Product 1</h3>
+                <p>$10.00</p>
+                <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-                <div class="error" id="emailError"></div>
+            <div class="product">
+                <h3>Product 2</h3>
+                <p>$20.00</p>
+                <button onclick="addToCart('Product 2', 20)">Add to Cart</button>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-                <div class="error" id="passwordError"></div>
+            <div class="product">
+                <h3>Product 3</h3>
+                <p>$30.00</p>
+                <button onclick="addToCart('Product 3', 30)">Add to Cart</button>
             </div>
-            <div class="form-group">
-                <button type="submit">Register</button>
-            </div>
-        </form>
+        </div>
+
+        <h2>Cart</h2>
+        <div class="cart" id="cart">
+            <!-- Cart items will be added here -->
+        </div>
+
+        <div class="cart-summary" id="cart-summary">
+            <p>Total: $<span id="cart-total">0.00</span></p>
+        </div>
     </div>
 
     <script>
-        document.getElementById('registrationForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let valid = true;
+        const cart = [];
+        const cartContainer = document.getElementById('cart');
+        const cartTotal = document.getElementById('cart-total');
 
-            // Clear previous errors
-            document.getElementById('usernameError').textContent = '';
-            document.getElementById('emailError').textContent = '';
-            document.getElementById('passwordError').textContent = '';
+        function addToCart(productName, productPrice) {
+            const product = { name: productName, price: productPrice };
+            cart.push(product);
+            renderCart();
+        }
 
-            // Validate username
-            const username = document.getElementById('username').value;
-            if (username.length < 3) {
-                document.getElementById('usernameError').textContent = 'Username must be at least 3 characters long';
-                valid = false;
-            }
-
-            // Validate email
-            const email = document.getElementById('email').value;
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(email)) {
-                document.getElementById('emailError').textContent = 'Invalid email address';
-                valid = false;
-            }
-
-            // Validate password
-            const password = document.getElementById('password').value;
-            if (password.length < 6) {
-                document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long';
-                valid = false;
-            }
-
-            if (valid) {
-                alert('Form submitted successfully!');
-                // Here you can add the code to send the form data to the server
-            }
-        });
+        function renderCart() {
+            cartContainer.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <h3>${item.name}</h3>
+                    <p>$${item.price.toFixed(2)}</p>
+                `;
+                cartContainer.appendChild(cartItem);
+                total += item.price;
+            });
+            cartTotal.textContent = total.toFixed(2);
+        }
     </script>
 </body>
 </html>
