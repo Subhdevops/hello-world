@@ -3,121 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Cart</title>
+    <title>Delicious Bites - Cooking Blog</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
+            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            background-color: #f7f7f7;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
+        .header {
+            background-color: #ff6347;
+            color: white;
+            padding: 20px 0;
             text-align: center;
         }
 
-        .products, .cart {
+        .header h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+
+        .nav {
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav ul li {
+            margin: 0 15px;
+        }
+
+        .nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .hero {
+            background-image: url('https://source.unsplash.com/1600x900/?food');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 40px 0 20px;
+            font-size: 2em;
+            color: #333;
+        }
+
+        .articles {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: space-around;
         }
 
-        .product, .cart-item {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 10px;
-            margin: 10px;
-            width: calc(33.333% - 20px);
-            box-sizing: border-box;
-            background: #fff;
+        .article {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            width: 300px;
+            overflow: hidden;
         }
 
-        .product button, .cart-item button {
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 4px;
-            cursor: pointer;
+        .article img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
 
-        .product button:hover, .cart-item button:hover {
-            background-color: #0056b3;
+        .article-content {
+            padding: 15px;
         }
 
-        .cart-summary {
-            margin-top: 20px;
-            text-align: right;
+        .article h3 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .article p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin: 0;
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1>Delicious Bites</h1>
+        <p>Your daily dose of tasty recipes</p>
+    </div>
+
+    <div class="nav">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Recipes</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="hero">
+        <h2>Discover New Recipes</h2>
+        <p>Explore our collection of delicious recipes</p>
+    </div>
+
     <div class="container">
-        <h1>Shopping Cart</h1>
-        <h2>Products</h2>
-        <div class="products" id="products">
-            <div class="product">
-                <h3>Product 1</h3>
-                <p>$10.00</p>
-                <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
+        <h2 class="section-title">Latest Articles</h2>
+        <div class="articles">
+            <div class="article">
+                <img src="https://source.unsplash.com/300x200/?pasta" alt="Pasta">
+                <div class="article-content">
+                    <h3>Perfect Pasta</h3>
+                    <p>Learn how to make the perfect pasta dish with this simple recipe.</p>
+                </div>
             </div>
-            <div class="product">
-                <h3>Product 2</h3>
-                <p>$20.00</p>
-                <button onclick="addToCart('Product 2', 20)">Add to Cart</button>
+            <div class="article">
+                <img src="https://source.unsplash.com/300x200/?salad" alt="Salad">
+                <div class="article-content">
+                    <h3>Fresh Salads</h3>
+                    <p>Discover refreshing and healthy salad recipes to brighten your day.</p>
+                </div>
             </div>
-            <div class="product">
-                <h3>Product 3</h3>
-                <p>$30.00</p>
-                <button onclick="addToCart('Product 3', 30)">Add to Cart</button>
+            <div class="article">
+                <img src="https://source.unsplash.com/300x200/?dessert" alt="Dessert">
+                <div class="article-content">
+                    <h3>Delicious Desserts</h3>
+                    <p>Indulge in our sweet and delectable dessert recipes.</p>
+                </div>
             </div>
-        </div>
-
-        <h2>Cart</h2>
-        <div class="cart" id="cart">
-            <!-- Cart items will be added here -->
-        </div>
-
-        <div class="cart-summary" id="cart-summary">
-            <p>Total: $<span id="cart-total">0.00</span></p>
         </div>
     </div>
 
-    <script>
-        const cart = [];
-        const cartContainer = document.getElementById('cart');
-        const cartTotal = document.getElementById('cart-total');
-
-        function addToCart(productName, productPrice) {
-            const product = { name: productName, price: productPrice };
-            cart.push(product);
-            renderCart();
-        }
-
-        function renderCart() {
-            cartContainer.innerHTML = '';
-            let total = 0;
-            cart.forEach(item => {
-                const cartItem = document.createElement('div');
-                cartItem.className = 'cart-item';
-                cartItem.innerHTML = `
-                    <h3>${item.name}</h3>
-                    <p>$${item.price.toFixed(2)}</p>
-                `;
-                cartContainer.appendChild(cartItem);
-                total += item.price;
-            });
-            cartTotal.textContent = total.toFixed(2);
-        }
-    </script>
+    <div class="footer">
+        <p>&copy; 2024 Delicious Bites. All rights reserved.</p>
+    </div>
 </body>
 </html>
