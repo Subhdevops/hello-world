@@ -148,21 +148,21 @@
         <h2 class="section-title">Latest Articles</h2>
         <div class="articles">
             <div class="article">
-                <img src="https://source.unsplash.com/300x200/?pasta" alt="Pasta">
+                <img src="https://myfoodstory.com/wp-content/uploads/2023/01/air-fryer-pasta-square-2.jpg" alt="Pasta">
                 <div class="article-content">
                     <h3>Perfect Pasta</h3>
                     <p>Learn how to make the perfect pasta dish with this simple recipe.</p>
                 </div>
             </div>
             <div class="article">
-                <img src="https://source.unsplash.com/300x200/?salad" alt="Salad">
+                <img src="https://cdn.loveandlemons.com/wp-content/uploads/2021/04/green-salad.jpg" alt="Salad">
                 <div class="article-content">
                     <h3>Fresh Salads</h3>
                     <p>Discover refreshing and healthy salad recipes to brighten your day.</p>
                 </div>
             </div>
             <div class="article">
-                <img src="https://source.unsplash.com/300x200/?dessert" alt="Dessert">
+                <img src="https://www.tasteofhome.com/wp-content/uploads/2018/01/Cherry-Delight-Dessert_EXPS_TOHcom23_27515_P2_MD_03_22_4b.jpg" alt="Dessert">
                 <div class="article-content">
                     <h3>Delicious Desserts</h3>
                     <p>Indulge in our sweet and delectable dessert recipes.</p>
