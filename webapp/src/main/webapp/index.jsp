@@ -127,7 +127,7 @@
 <body>
     <div class="header">
         <h1>Delicious Bites</h1>
-        <p>Your daily dose of tasty recipes</p>
+        <p>Your daily dose of tasty Recipes</p>
     </div>
 
     <div class="nav">
